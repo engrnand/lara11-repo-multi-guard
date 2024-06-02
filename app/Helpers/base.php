@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 if (!function_exists('successResponse')) {
@@ -10,7 +12,7 @@ if (!function_exists('successResponse')) {
      * @param bool $paginate
      * @return \Illuminate\Http\Response
      */
-    function successResponse($message = '', $data = [], $code = 200, $paginate = FALSE)
+    function successResponse($data = [], $message = '', $code = 200, $paginate = FALSE)
     {
         if ($paginate == TRUE && is_object($data)) {
             $data =  paginate($data);

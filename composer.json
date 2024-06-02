@@ -11,6 +11,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.0",
         "laravel/passport": "^12.2",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9"
     },
     "require-dev": {
@@ -29,6 +30,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Helpers/system.php",
             "app/Helpers/base.php",
             "app/Helpers/constants.php"
         ]
