@@ -33,13 +33,11 @@ if (!function_exists('errorResponse')) {
      */
     function errorResponse($message, $code = 400, $errors = [])
     {
-
         $code = $code == 0 ? 400 : $code;
-
-        $isSqlQuery = strpos($message, "SQLSTATE") === 0;
+        $isSqlQuery = Str::startsWith($message, "SQLSTATE");
         // cutting full sql error message
-        if (is_string($message) && $isSqlQuery && app()->isProduction()) {
-            $message = substr($message, 0, strpos($message,  " (SQL:"));
+        if (is_string($message) && $isSqlQuery && !app()->isProduction()) {
+            $message = substr($message, 0, strpos($message,  "(Connection: mysql, SQL:"));
         }
 
         $response = responseStructure($message, $errors, $code, false);

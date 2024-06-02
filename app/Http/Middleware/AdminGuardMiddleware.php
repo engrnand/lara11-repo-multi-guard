@@ -17,9 +17,9 @@ class AdminGuardMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->tokenCan(UserGaurdEnum::ADMIN->value)) {
+        if ($request->user()->tokenCan("guard:" . UserGaurdEnum::ADMIN->value)) {
             return $next($request);
         }
-        throw new UnauthorizedException("Sorry! You are not authorized");
+        throw new UnauthorizedException(trans('auth.not_authorized'));
     }
 }
