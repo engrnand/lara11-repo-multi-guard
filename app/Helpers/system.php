@@ -15,7 +15,7 @@ function exceptionErrors($exception)
             return errorResponse('You are not authenticated. Please login.', 401);
 
         case 'ValidationException':
-            $response = errorResponse(array_values($exception->errors())[0] ?? '', 422, $exception->errors());
+            $response = errorResponse($exception->getMessage(), 422, $exception->errors());
             break;
 
         case 'ModelNotFoundException':
